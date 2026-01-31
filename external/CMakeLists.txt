@@ -204,15 +204,17 @@ if(SLANG_ENABLE_SLANG_GLSLANG)
             endif()
         endif()
 
-        # Tools
-        if(NOT SLANG_OVERRIDE_SPIRV_TOOLS_PATH)
-            add_subdirectory(spirv-tools EXCLUDE_FROM_ALL)
-        else()
-            add_subdirectory(
-                ${SLANG_OVERRIDE_SPIRV_TOOLS_PATH}/spirv-tools
-                spirv-tools
-                EXCLUDE_FROM_ALL
-            )
+        # Tools - Skip if SPIRV-Tools target already exists (e.g., from Dawn)
+        if(NOT TARGET SPIRV-Tools)
+            if(NOT SLANG_OVERRIDE_SPIRV_TOOLS_PATH)
+                add_subdirectory(spirv-tools EXCLUDE_FROM_ALL)
+            else()
+                add_subdirectory(
+                    ${SLANG_OVERRIDE_SPIRV_TOOLS_PATH}/spirv-tools
+                    spirv-tools
+                    EXCLUDE_FROM_ALL
+                )
+            endif()
         endif()
     endif()
 
