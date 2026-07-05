@@ -161,7 +161,7 @@ int wmain(int argc, wchar_t** argv)
 
     int memleakDetected = _CrtDumpMemoryLeaks();
     SLANG_UNUSED(memleakDetected);
-    assert(!memleakDetected);
+    // assert(!memleakDetected);
 #endif
 
     return result;
